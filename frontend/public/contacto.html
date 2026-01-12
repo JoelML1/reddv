@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Fundación Red de Vida</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo" title="Ir al Inicio">
+                <img src="images/logo.jpg" alt="RDV Logo - Fundación Red de Vida">
+            </a>
+            <div class="menu-icon" id="menuIcon">☰</div>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item"><a href="sobre-nosotros.html" class="nav-links">Sobre nosotros</a></li>
+                <li class="nav-item"><a href="devocional.html" class="nav-links">Devocional</a></li>
+                <li class="nav-item"><a href="galeria.html" class="nav-links">Galería</a></li>
+                <li class="nav-item"><a href="index.html" class="nav-links">Inicio</a></li>
+                <li class="nav-item"><a href="contacto.html" class="nav-links">Contacto</a></li>
+                <li class="nav-item"><a href="apadrina.html" class="nav-links">Apadrina</a></li>
+                <li class="nav-item"><a href="donar.html" class="nav-links nav-links-donar">Donar</a></li>
+            </ul>
+            <div class="navbar-social">
+                <a href="https://www.instagram.com/fundacionreddevida_/" target="_blank" title="Instagram">📸</a>
+                <a href="https://www.facebook.com/funreddevida/" target="_blank" title="Facebook">f</a>
+                <a href="https://www.youtube.com/channel/UCu2BhJERmo24n57K730B6gQ" target="_blank" title="YouTube">▶️</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <section class="section-header">
+        <div class="container">
+            <h1>Contáctanos</h1>
+            <p>Estamos aquí para responder tus preguntas</p>
+        </div>
+    </section>
+
+    <!-- Info de Contacto -->
+    <section class="section section-light">
+        <div class="container">
+            <div class="contacto-info-grid">
+                <div class="contacto-card">
+                    <div class="contacto-icon">📞</div>
+                    <h3>Teléfono</h3>
+                    <p>+57 6017913472</p>
+                </div>
+                <div class="contacto-card">
+                    <div class="contacto-icon">📧</div>
+                    <h3>Email</h3>
+                    <p>freddevida2@gmail.com</p>
+                </div>
+                <div class="contacto-card">
+                    <div class="contacto-icon">📍</div>
+                    <h3>Ubicación</h3>
+                    <p>Transversal 18h #78c-65, Bogotá</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mapa -->
+    <section class="section section-light-bg">
+        <div class="container">
+            <h2 class="text-center">Ubicación en el Mapa</h2>
+            <div class="mapa-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1955.4386698145556!2d-74.20069!3d4.8231!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNMKwNDknMjQuMCJOIDc0wrAxMicyNi4yIlc!5e0!3m2!1ses!2sco!4v1234567890" width="100%" height="400" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulario de Contacto -->
+    <section class="section section-light">
+        <div class="container max-width-600">
+            <h2 class="text-center">Envíanos un Mensaje</h2>
+            <form class="contacto-form" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label>Nombre</label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Asunto</label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>Mensaje</label>
+                    <textarea rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn-primary btn-full">Enviar Mensaje</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Fundación Red de Vida. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('Mensaje enviado correctamente. Nos pondremos en contacto pronto.');
+            event.target.reset();
+        }
+    </script>
+</body>
+</html>

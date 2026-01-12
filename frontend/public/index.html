@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundación Red de Vida - Transformando Vidas</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo" title="Ir al Inicio">
+                <img src="images/logo.jpg" alt="RDV Logo - Fundación Red de Vida">
+            </a>
+            <div class="menu-icon" id="menuIcon">☰</div>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item"><a href="sobre-nosotros.html" class="nav-links">Sobre nosotros</a></li>
+                <li class="nav-item"><a href="devocional.html" class="nav-links">Devocional</a></li>
+                <li class="nav-item"><a href="galeria.html" class="nav-links">Galería</a></li>
+                 <!--<li class="nav-item"><a href="index.html" class="nav-links">Inicio</a></li>-->
+                <li class="nav-item"><a href="contacto.html" class="nav-links">Contacto</a></li>
+                <li class="nav-item"><a href="apadrina.html" class="nav-links">Apadrina</a></li>
+                <li class="nav-item"><a href="donar.html" class="nav-links nav-links-donar">Donar</a></li>
+            </ul>
+            <div class="navbar-social">
+                <a href="https://www.instagram.com/fundacionreddevida_/" target="_blank" title="Instagram">📸</a>
+                <a href="https://www.facebook.com/funreddevida/" target="_blank" title="Facebook">f</a>
+                <a href="https://www.youtube.com/channel/UCu2BhJERmo24n57K730B6gQ" target="_blank" title="YouTube">▶️</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" style="background-image: url('images/grupo-fundacion.jpg')">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Fundación Red de Vida</h1>
+            <p>Transformando vidas a través de la educación, la fe y el amor</p>
+            <a href="sobre-nosotros.html" class="btn-primary">Conoce Más Sobre Nosotros</a>
+        </div>
+    </section>
+
+    <!-- Sobre Nosotros Preview -->
+    <section class="section section-light">
+        <div class="container">
+            <div class="section-header-content">
+                <h2>Sobre Nosotros</h2>
+                <div class="header-line"></div>
+            </div>
+            <p class="section-description">Fundación Red de Vida es una entidad sin ánimo de lucro comprometida desde hace más de 16 años con la transformación de vidas de niños en alto estado de vulnerabilidad, a través de educación integral, apoyo emocional y valores cristianos.</p>
+        </div>
+    </section>
+
+    <!-- Formas en que Ayudamos -->
+    <section class="section section-dark">
+        <div class="container">
+            <div class="section-header-content">
+                <h2>Formas en que Ayudamos</h2>
+                <div class="header-line header-line-light"></div>
+            </div>
+            <div class="cards-grid">
+                <div class="card card-dark">
+                    <div class="card-icon">✨</div>
+                    <h3>Apoyo Espiritual</h3>
+                    <p>Ofrecemos valores bíblicos, oración y conexión con Dios desde perspectivas integrales y psicológicas.</p>
+                </div>
+                <div class="card card-dark">
+                    <div class="card-icon">💪</div>
+                    <h3>Salud Física</h3>
+                    <p>Alimentación nutritiva, valoración médica, educación sexual y cuidado integral de la salud.</p>
+                </div>
+                <div class="card card-dark">
+                    <div class="card-icon">❤️</div>
+                    <h3>Desarrollo Socio-Emocional</h3>
+                    <p>Expresión de sentimientos, interacción recíproca con otros y toma de decisiones responsables.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Carrusel de Niños -->
+    <section class="section section-light">
+        <div class="container">
+            <div class="section-header-content">
+                <h2>Apadrina un Niño</h2>
+                <div class="header-line"></div>
+            </div>
+            <p class="section-description">Cada niño merece oportunidades para alcanzar su máximo potencial. Conoce las historias de nuestros beneficiarios.</p>
+            
+            <div class="carousel">
+                <div class="carousel-container">
+                    <div class="carousel-image">
+                        <img id="carouselImage" src="images/juan.jpg" alt="Niño">
+                    </div>
+                    <div class="carousel-info">
+                        <h3 id="carouselName">Juan</h3>
+                        <p class="age" id="carouselAge">📅 8 años</p>
+                        <p class="description" id="carouselDesc">Juan necesita educación y apoyo emocional para cumplir sus sueños de ser ingeniero.</p>
+                        <button class="btn-primary btn-secondary">Apadrina a <span id="carouselNameBtn">Juan</span></button>
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <button onclick="prevSlide()" class="carousel-btn">❮</button>
+                    <span class="carousel-counter"><span id="carouselCurrent">1</span> de <span id="carouselTotal">3</span></span>
+                    <button onclick="nextSlide()" class="carousel-btn">❯</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Alianzas -->
+    <section class="section section-dark">
+        <div class="container">
+            <div class="section-header-content">
+                <h2>Nuestras Alianzas</h2>
+                <div class="header-line header-line-light"></div>
+            </div>
+            <p class="section-description section-description-light">Trabajamos en conjunto con organizaciones comprometidas para maximizar nuestro impacto en las comunidades.</p>
+            <div class="alianzas-grid">
+                <div class="alianza-card">
+                    <div class="alianza-icon">🤝</div>
+                    <h3>Compassion International</h3>
+                    <p>Alianza global para el desarrollo integral de niños</p>
+                </div>
+                <div class="alianza-card">
+                    <div class="alianza-icon">🌱</div>
+                    <h3>Tierra Fértil</h3>
+                    <p>Desarrollo comunitario sostenible</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section section-light section-cta">
+        <div class="container text-center">
+            <h2>Queremos Conocerte</h2>
+            <p>Si deseas conocer más sobre nuestro trabajo o tienes preguntas, no dudes en contactarnos.</p>
+            <a href="contacto.html" class="btn-primary">Contacta con Nosotros</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Fundación Red de Vida. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

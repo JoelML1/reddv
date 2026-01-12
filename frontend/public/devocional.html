@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devocionales - Fundación Red de Vida</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo" title="Ir al Inicio">
+                <img src="images/logo.jpg" alt="RDV Logo - Fundación Red de Vida">
+            </a>
+            <div class="menu-icon" id="menuIcon">☰</div>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item"><a href="sobre-nosotros.html" class="nav-links">Sobre nosotros</a></li>
+                <li class="nav-item"><a href="devocional.html" class="nav-links">Devocional</a></li>
+                <li class="nav-item"><a href="galeria.html" class="nav-links">Galería</a></li>
+                <li class="nav-item"><a href="index.html" class="nav-links">Inicio</a></li>
+                <li class="nav-item"><a href="contacto.html" class="nav-links">Contacto</a></li>
+                <li class="nav-item"><a href="apadrina.html" class="nav-links">Apadrina</a></li>
+                <li class="nav-item"><a href="donar.html" class="nav-links nav-links-donar">Donar</a></li>
+            </ul>
+            <div class="navbar-social">
+                <a href="https://www.instagram.com/fundacionreddevida_/" target="_blank" title="Instagram">📸</a>
+                <a href="https://www.facebook.com/funreddevida/" target="_blank" title="Facebook">f</a>
+                <a href="https://www.youtube.com/channel/UCu2BhJERmo24n57K730B6gQ" target="_blank" title="YouTube">▶️</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <section class="section-header">
+        <div class="container">
+            <h1>Devocionales</h1>
+            <p>Reflexiones diarias para fortalecer tu fe</p>
+        </div>
+    </section>
+
+    <!-- Devocionales -->
+    <section class="section section-light">
+        <div class="container">
+            <div class="devocionales-list" id="devocionales-list"></div>
+        </div>
+    </section>
+
+    <!-- Suscripción -->
+    <section class="section section-light-bg">
+        <div class="container text-center">
+            <h2>Recibe Devocionales Diarios</h2>
+            <p>Suscríbete para recibir un devocional cada día en tu correo</p>
+            <div class="subscribe-form">
+                <input type="email" placeholder="tu@email.com" required>
+                <button class="btn-primary">Suscribir</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Fundación Red de Vida. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        const devocionales = [
+            { id: 1, titulo: 'La Fe nos Mueve', fecha: '2024-01-15', versiculo: 'Hebreos 11:1', contenido: 'La fe es la certeza de lo que se espera, la convicción de lo que no se ve. Cuando confiamos en Dios, abrimos puertas que parecían cerradas.' },
+            { id: 2, titulo: 'Amor Incondicional', fecha: '2024-01-14', versiculo: '1 Juan 4:8', contenido: 'Dios es amor. Cada acto de bondad que realizamos es un reflejo del amor divino. Te invitamos a amar sin condiciones.' },
+            { id: 3, titulo: 'Fortaleza en la Debilidad', fecha: '2024-01-13', versiculo: '2 Corintios 12:9', contenido: 'Mi gracia es suficiente para ti. Reconocer nuestras limitaciones es el primer paso para encontrar la fortaleza divina.' }
+        ];
+
+        function renderDevocionales() {
+            const list = document.getElementById('devocionales-list');
+            list.innerHTML = devocionales.map(dev => `
+                <div class="devocional-item">
+                    <div class="devocional-header" onclick="toggleDevocional(this)">
+                        <div>
+                            <h3>${dev.titulo}</h3>
+                            <p class="versiculo">${dev.versiculo}</p>
+                            <p class="fecha">${dev.fecha}</p>
+                        </div>
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <div class="devocional-content" style="display: none;">
+                        <p>${dev.contenido}</p>
+                        <button class="btn-primary">Reflexionar</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleDevocional(header) {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('.expand-icon');
+            const isOpen = content.style.display === 'block';
+            content.style.display = isOpen ? 'none' : 'block';
+            icon.textContent = isOpen ? '+' : '−';
+        }
+
+        renderDevocionales();
+    </script>
+</body>
+</html>

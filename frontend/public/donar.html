@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donar - Fundación Red de Vida</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo" title="Ir al Inicio">
+                <img src="images/logo.jpg" alt="RDV Logo - Fundación Red de Vida">
+            </a>
+            <div class="menu-icon" id="menuIcon">☰</div>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item"><a href="sobre-nosotros.html" class="nav-links">Sobre nosotros</a></li>
+                <li class="nav-item"><a href="devocional.html" class="nav-links">Devocional</a></li>
+                <li class="nav-item"><a href="galeria.html" class="nav-links">Galería</a></li>
+                <li class="nav-item"><a href="index.html" class="nav-links">Inicio</a></li>
+                <li class="nav-item"><a href="contacto.html" class="nav-links">Contacto</a></li>
+                <li class="nav-item"><a href="apadrina.html" class="nav-links">Apadrina</a></li>
+                <li class="nav-item"><a href="donar.html" class="nav-links nav-links-donar">Donar</a></li>
+            </ul>
+            <div class="navbar-social">
+                <a href="https://www.instagram.com/fundacionreddevida_/" target="_blank" title="Instagram">📸</a>
+                <a href="https://www.facebook.com/funreddevida/" target="_blank" title="Facebook">f</a>
+                <a href="https://www.youtube.com/channel/UCu2BhJERmo24n57K730B6gQ" target="_blank" title="YouTube">▶️</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <section class="section-header">
+        <div class="container">
+            <h1>Haz una Donación</h1>
+            <p>Tu ayuda transforma vidas</p>
+        </div>
+    </section>
+
+    <!-- Por qué donar -->
+    <section class="section section-light">
+        <div class="container">
+            <h2 class="text-center">¿Por qué Donar?</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon">❤️</div>
+                    <h3>Cambias Vidas</h3>
+                    <p>Tu donación impacta directamente en el futuro de niños en vulnerabilidad.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🔒</div>
+                    <h3>Transparencia Total</h3>
+                    <p>100% de tus donaciones se destinan al bienestar de nuestros beneficiarios.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🤝</div>
+                    <h3>Eres Parte</h3>
+                    <p>Te conviertes en parte de una comunidad comprometida con el cambio.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Opciones de donación -->
+    <section class="section section-light-bg">
+        <div class="container text-center">
+            <h2>Elige tu Monto</h2>
+            <div class="donation-grid">
+                <div class="donation-card" onclick="selectDonation(this, 10000)">
+                    <div class="donation-amount">$10,000</div>
+                    <p>Proporciona 1 comida nutritiva</p>
+                </div>
+                <div class="donation-card" onclick="selectDonation(this, 25000)">
+                    <div class="donation-amount">$25,000</div>
+                    <p>Cubre 1 mes de tutoría</p>
+                </div>
+                <div class="donation-card" onclick="selectDonation(this, 50000)">
+                    <div class="donation-amount">$50,000</div>
+                    <p>Apoyo integral mensual</p>
+                </div>
+                <div class="donation-card" onclick="selectDonation(this, 100000)">
+                    <div class="donation-amount">$100,000</div>
+                    <p>Apadrina a un niño</p>
+                </div>
+            </div>
+            <button class="btn-primary btn-large" onclick="procesarDonacion()">Proceder al Pago</button>
+            <p class="text-center" style="margin-top: 20px; color: #666;">Aceptamos todas las tarjetas de crédito y débito</p>
+        </div>
+    </section>
+
+    <!-- Métodos de pago -->
+    <section class="section section-dark">
+        <div class="container text-center">
+            <h2>También puedes donar por:</h2>
+            <div class="metodos-grid">
+                <div class="metodo-card">
+                    <h3>Transferencia Bancaria</h3>
+                    <p>Cuenta corriente Banco X: 123456789</p>
+                </div>
+                <div class="metodo-card">
+                    <h3>Pago Móvil</h3>
+                    <p>+57 3001234567</p>
+                </div>
+                <div class="metodo-card">
+                    <h3>Criptomonedas</h3>
+                    <p>Bitcoin y Ethereum disponibles</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Fundación Red de Vida. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        let selectedAmount = null;
+
+        function selectDonation(element, amount) {
+            document.querySelectorAll('.donation-card').forEach(card => card.classList.remove('selected'));
+            element.classList.add('selected');
+            selectedAmount = amount;
+        }
+
+        function procesarDonacion() {
+            if (selectedAmount) {
+                alert(`Donación de $${selectedAmount.toLocaleString()} iniciada. Serás redirigido al pago.`);
+            } else {
+                alert('Por favor selecciona un monto');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apadrina un Niño - Fundación Red de Vida</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item"><a href="sobre-nosotros.html" class="nav-links">Sobre nosotros</a></li>
+                <li class="nav-item"><a href="devocional.html" class="nav-links">Devocional</a></li>
+                <li class="nav-item"><a href="galeria.html" class="nav-links">Galería</a></li>
+                <li class="nav-item"><a href="contacto.html" class="nav-links">Contacto</a></li>
+                <li class="nav-item"><a href="apadrina.html" class="nav-links">Apadrina</a></li>
+            </ul>
+            
+            <a href="index.html" class="navbar-logo" title="Ir al Inicio">
+                <img src="images/logo.jpg" alt="RDV Logo - Fundación Red de Vida">
+            </a>
+            
+            <div style="display: flex; gap: 20px; align-items: center; order: 3;">
+                <a href="donar.html" class="nav-links nav-links-donar">Donar</a>
+                
+                <div class="navbar-social">
+                    <a href="https://www.instagram.com/fundacionreddevida_/" target="_blank" title="Instagram">📷</a>
+                    <a href="https://www.facebook.com/funreddevida/" target="_blank" title="Facebook">📘</a>
+                    <a href="https://www.youtube.com/channel/UCu2BhJERmo24n57K730B6gQ" target="_blank" title="YouTube">▶️</a>
+                </div>
+            </div>
+            
+            <div class="menu-icon" id="menuIcon">☰</div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <section class="section-header">
+        <div class="container">
+            <h1>Apadrina un Niño</h1>
+            <p>Sé parte de la transformación de sus vidas</p>
+        </div>
+    </section>
+
+    <!-- ¿Qué significa apadrinar? -->
+    <section class="section section-light">
+        <div class="container">
+            <h2 class="text-center" style="margin-bottom: 40px;">¿Qué significa Apadrinar?</h2>
+            <div class="apadrina-benefits">
+                <div class="benefit-item">
+                    <div class="benefit-icon">✓</div>
+                    <div>
+                        <h3>Apoyo Integral</h3>
+                        <p>Proporcionas educación, alimentación y apoyo emocional continuo.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">✓</div>
+                    <div>
+                        <h3>Relación Personalizada</h3>
+                        <p>Estableces una conexión significativa con el niño que apadrinas.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">✓</div>
+                    <div>
+                        <h3>Impacto Mensurable</h3>
+                        <p>Recibes reportes sobre el progreso y desarrollo del niño.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">✓</div>
+                    <div>
+                        <h3>Cambio Real</h3>
+                        <p>Tu compromiso abre puertas a un futuro mejor para ellos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Carrusel de niños -->
+    <section class="section section-light-bg">
+        <div class="container">
+            <h2 class="text-center" style="margin-bottom: 40px;">Niños que Necesitan tu Apoyo</h2>
+            <div class="carousel">
+                <div class="carousel-container">
+                    <div class="carousel-image">
+                        <img id="apadrinaImage" src="images/juan.jpg" alt="Niño">
+                    </div>
+                    <div class="carousel-info">
+                        <h3 id="apadrinaName">Juan David</h3>
+                        <p class="age" id="apadrinaAge">📅 8 años</p>
+                        <p class="description" id="apadrinaDesc">Juan es un niño alegre que ama los deportes y estudiar.</p>
+                        <div class="necesidades" id="apadrinaNecesidades"></div>
+                        <button class="btn-primary btn-secondary">Apadrina a <span id="apadrinaNameBtn">Juan</span></button>
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <button onclick="prevApadrina()" class="carousel-btn">❮</button>
+                    <span class="carousel-counter"><span id="apadrinaCurrent">1</span> / 3</span>
+                    <button onclick="nextApadrina()" class="carousel-btn">❯</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Redes Sociales -->
+    <section class="section section-dark text-center">
+        <div class="container">
+            <h2>Síguenos en Redes Sociales</h2>
+            <p style="margin-bottom: 30px;">Comparte historias de transformación y sé parte de la comunidad</p>
+            <div style="font-size: 2rem; display: flex; justify-content: center; gap: 30px;">
+                <a href="https://www.instagram.com/fundacionreddevida_/" target="_blank" style="color: #ec4899; text-decoration: none;" title="Instagram">📸</a>
+                <a href="https://www.facebook.com/funreddevida/" target="_blank" style="color: #3b82f6; text-decoration: none;" title="Facebook">f</a>
+                <a href="https://www.youtube.com/channel/UCu2BhJERmo24n57K730B6gQ" target="_blank" style="color: #ef4444; text-decoration: none;" title="YouTube">▶️</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Fundación Red de Vida. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        const niñosApadrina = [
+            { id: 1, nombre: 'Juan David', edad: 8, imagen: 'images/juan.jpg', historia: 'Juan es un niño alegre que ama los deportes y estudiar.', necesidades: ['Educación', 'Nutrición', 'Apoyo emocional'] },
+            { id: 2, nombre: 'María Isabel', edad: 6, imagen: 'images/maria.jpg', historia: 'María es tímida pero talentosa en el arte.', necesidades: ['Educación artística', 'Nutrición', 'Atención médica'] },
+            { id: 3, nombre: 'Carlos Andrés', edad: 10, imagen: 'images/carlos.jpg', historia: 'Carlos es un líder natural entre sus compañeros.', necesidades: ['Educación', 'Liderazgo', 'Nutrición'] }
+        ];
+
+        let currentApadrina = 0;
+
+        function updateApadrina() {
+            const niño = niñosApadrina[currentApadrina];
+            document.getElementById('apadrinaImage').src = niño.imagen;
+            document.getElementById('apadrinaName').textContent = niño.nombre;
+            document.getElementById('apadrinaAge').textContent = `📅 ${niño.edad} años`;
+            document.getElementById('apadrinaDesc').textContent = niño.historia;
+            document.getElementById('apadrinaNameBtn').textContent = niño.nombre.split(' ')[0];
+            document.getElementById('apadrinaCurrent').textContent = currentApadrina + 1;
+            document.getElementById('apadrinaNecesidades').innerHTML = niño.necesidades.map(n => `<span class="necesidad-tag">${n}</span>`).join('');
+        }
+
+        function nextApadrina() {
+            currentApadrina = (currentApadrina + 1) % niñosApadrina.length;
+            updateApadrina();
+        }
+
+        function prevApadrina() {
+            currentApadrina = (currentApadrina - 1 + niñosApadrina.length) % niñosApadrina.length;
+            updateApadrina();
+        }
+
+        updateApadrina();
+    </script>
+</body>
+</html>

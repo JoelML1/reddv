@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería - Fundación Red de Vida</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo" title="Ir al Inicio">
+                <img src="images/logo.jpg" alt="RDV Logo - Fundación Red de Vida">
+            </a>
+            <div class="menu-icon" id="menuIcon">☰</div>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item"><a href="sobre-nosotros.html" class="nav-links">Sobre nosotros</a></li>
+                <li class="nav-item"><a href="devocional.html" class="nav-links">Devocional</a></li>
+                <li class="nav-item"><a href="galeria.html" class="nav-links">Galería</a></li>
+                <li class="nav-item"><a href="index.html" class="nav-links">Inicio</a></li>
+                <li class="nav-item"><a href="contacto.html" class="nav-links">Contacto</a></li>
+                <li class="nav-item"><a href="apadrina.html" class="nav-links">Apadrina</a></li>
+                <li class="nav-item"><a href="donar.html" class="nav-links nav-links-donar">Donar</a></li>
+            </ul>
+            <div class="navbar-social">
+                <a href="https://www.instagram.com/fundacionreddevida_/" target="_blank" title="Instagram">📸</a>
+                <a href="https://www.facebook.com/funreddevida/" target="_blank" title="Facebook">f</a>
+                <a href="https://www.youtube.com/channel/UCu2BhJERmo24n57K730B6gQ" target="_blank" title="YouTube">▶️</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <section class="section-header">
+        <div class="container">
+            <h1>Galería</h1>
+            <p>Momentos especiales de nuestro trabajo</p>
+        </div>
+    </section>
+
+    <!-- Galería -->
+    <section class="section section-light">
+        <div class="container">
+            <div class="galeria-grid" id="galeria-grid"></div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <img id="modal-image" src="" alt="">
+            <div class="modal-info">
+                <h2 id="modal-title"></h2>
+                <p id="modal-category"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Fundación Red de Vida. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        const imagenes = [
+            { id: 1, titulo: 'Actividad de Lectura', imagen: 'images/lectura.jpg', categoria: 'educacion' },
+            { id: 2, titulo: 'Jornada de Salud', imagen: 'images/salud.jpg', categoria: 'salud' },
+            { id: 3, titulo: 'Evento Comunitario', imagen: 'images/comunidad.jpg', categoria: 'comunidad' },
+            { id: 4, titulo: 'Clase Espiritual', imagen: 'images/espiritual.jpg', categoria: 'espiritual' },
+            { id: 5, titulo: 'Desayuno Compartido', imagen: 'images/desayuno.jpg', categoria: 'social' },
+            { id: 6, titulo: 'Capacitación Laboral', imagen: 'images/capacitacion.jpg', categoria: 'educacion' }
+        ];
+
+        function renderGaleria() {
+            const grid = document.getElementById('galeria-grid');
+            grid.innerHTML = imagenes.map(img => `
+                <div class="galeria-card" onclick="openModal('${img.imagen}', '${img.titulo}', '${img.categoria}')">
+                    <img src="${img.imagen}" alt="${img.titulo}">
+                    <div class="galeria-overlay"><span class="expand-btn">🔍</span></div>
+                    <div class="galeria-footer"><h3>${img.titulo}</h3></div>
+                </div>
+            `).join('');
+        }
+
+        function openModal(img, titulo, categoria) {
+            document.getElementById('modal').style.display = 'flex';
+            document.getElementById('modal-image').src = img;
+            document.getElementById('modal-title').textContent = titulo;
+            document.getElementById('modal-category').textContent = 'Categoría: ' + categoria;
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        renderGaleria();
+    </script>
+</body>
+</html>
