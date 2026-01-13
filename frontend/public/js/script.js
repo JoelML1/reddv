@@ -2,23 +2,56 @@
 const menuIcon = document.getElementById('menuIcon');
 const navMenu = document.getElementById('navMenu');
 
-if (menuIcon) {
-    menuIcon.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-        menuIcon.style.color = navMenu.classList.contains('active') ? '#dc2626' : '#fff';
-    });
-}
+console.log('Script.js cargado - Elementos del menú:', { menuIcon, navMenu });
 
-// Cerrar menú al hacer clic en un enlace
-const navLinks = document.querySelectorAll('.nav-links');
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        if (menuIcon) {
-            menuIcon.style.color = '#fff';
+if (menuIcon && navMenu) {
+    // Remover event listeners previos
+    const newMenuIcon = menuIcon.cloneNode(true);
+    menuIcon.parentNode.replaceChild(newMenuIcon, menuIcon);
+    
+    // Toggle del menú al hacer clic en el ícono
+    newMenuIcon.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const isActive = navMenu.classList.contains('active');
+        console.log('Click en menú (index), estado:', isActive);
+        
+        if (isActive) {
+            navMenu.classList.remove('active');
+            newMenuIcon.textContent = '☰';
+        } else {
+            navMenu.classList.add('active');
+            newMenuIcon.textContent = '✕';
         }
     });
-});
+
+    // Cerrar el menú al hacer clic en cualquier link
+    const navLinks = navMenu.querySelectorAll('.nav-links');
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            console.log('Click en link:', link.textContent);
+            // Permitir la navegación antes de cerrar
+            setTimeout(() => {
+                navMenu.classList.remove('active');
+                newMenuIcon.textContent = '☰';
+            }, 50);
+        });
+    });
+
+    // Cerrar el menú al hacer clic fuera de él
+    document.addEventListener('click', (event) => {
+        const isClickInsideMenu = navMenu.contains(event.target);
+        const isClickOnMenuIcon = newMenuIcon.contains(event.target);
+        
+        if (!isClickInsideMenu && !isClickOnMenuIcon && navMenu.classList.contains('active')) {
+            navMenu.classList.remove('active');
+            newMenuIcon.textContent = '☰';
+        }
+    });
+    
+    console.log('Menú inicializado en index.html');
+}
 
 // Scroll animation
 const observerOptions = {
