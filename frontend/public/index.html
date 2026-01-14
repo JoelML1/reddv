@@ -46,36 +46,48 @@
     </section>
 
     <!-- Sobre Nosotros Preview -->
-    <section class="section section-light">
+    <section class="section section-light section-sobre-nosotros">
         <div class="container">
-            <div class="section-header-content">
+            <div class="section-header-content animate-on-scroll">
                 <h2>Sobre Nosotros</h2>
                 <div class="header-line"></div>
             </div>
-            <p class="section-description">Fundación Red de Vida es una entidad sin ánimo de lucro comprometida desde hace más de 16 años con la transformación de vidas de niños en alto estado de vulnerabilidad, a través de educación integral, apoyo emocional y valores cristianos.</p>
+            <div class="sobre-nosotros-content animate-on-scroll">
+                <div class="sobre-nosotros-icon">
+                    <img src="images/logo.jpg" alt="Fundación Red de Vida">
+                </div>
+                <p class="section-description">Fundación Red de Vida es una entidad sin ánimo de lucro comprometida desde hace más de <span class="highlight">16 años</span> con la transformación de vidas de niños en alto estado de vulnerabilidad, a través de <strong>educación integral, apoyo emocional y valores cristianos.</strong></p>
+                <a href="sobre-nosotros.html" class="btn-primary btn-outline">Conoce Más Sobre Nosotros</a>
+            </div>
         </div>
     </section>
 
     <!-- Formas en que Ayudamos -->
-    <section class="section section-dark">
+    <section class="section section-dark section-ayudamos">
         <div class="container">
             <div class="section-header-content">
                 <h2>Formas en que Ayudamos</h2>
                 <div class="header-line header-line-light"></div>
             </div>
             <div class="cards-grid">
-                <div class="card card-dark">
-                    <div class="card-icon">✨</div>
+                <div class="card card-dark card-hover animate-on-scroll">
+                    <div class="card-icon-wrapper">
+                        <div class="card-icon">✨</div>
+                    </div>
                     <h3>Apoyo Espiritual</h3>
                     <p>Ofrecemos valores bíblicos, oración y conexión con Dios desde perspectivas integrales y psicológicas.</p>
                 </div>
-                <div class="card card-dark">
-                    <div class="card-icon">💪</div>
+                <div class="card card-dark card-hover animate-on-scroll">
+                    <div class="card-icon-wrapper">
+                        <div class="card-icon">💪</div>
+                    </div>
                     <h3>Salud Física</h3>
                     <p>Alimentación nutritiva, valoración médica, educación sexual y cuidado integral de la salud.</p>
                 </div>
-                <div class="card card-dark">
-                    <div class="card-icon">❤️</div>
+                <div class="card card-dark card-hover animate-on-scroll">
+                    <div class="card-icon-wrapper">
+                        <div class="card-icon">❤️</div>
+                    </div>
                     <h3>Desarrollo Socio-Emocional</h3>
                     <p>Expresión de sentimientos, interacción recíproca con otros y toma de decisiones responsables.</p>
                 </div>
@@ -84,7 +96,7 @@
     </section>
 
     <!-- Carrusel de Niños -->
-    <section class="section section-light">
+    <section class="section section-light section-apadrina-home">
         <div class="container">
             <div class="section-header-content">
                 <h2>Apadrina un Niño</h2>
@@ -94,7 +106,7 @@
             
             <div class="carousel">
                 <div class="carousel-container">
-                    <div class="carousel-image">
+                    <div class="carousel-image" onclick="openImageModal()" style="cursor: pointer;">
                         <img id="carouselImage" src="images/juan.jpg" alt="Niño">
                     </div>
                     <div class="carousel-info">
@@ -114,43 +126,85 @@
     </section>
 
     <!-- Alianzas -->
-    <section class="section section-dark">
+    <section class="section section-dark section-alianzas">
         <div class="container">
             <div class="section-header-content">
-                <h2>Nuestras Alianzas</h2>
+                <h2>Alianzas</h2>
                 <div class="header-line header-line-light"></div>
             </div>
-            <p class="section-description section-description-light">Trabajamos en conjunto con organizaciones comprometidas para maximizar nuestro impacto en las comunidades.</p>
+            <p class="section-description section-description-light">Aquí encontrarás las páginas web de las fundaciones con las que tenemos contacto constante para lograr alianzas positivas que ayuden a nuestros participantes</p>
+            
             <div class="alianzas-grid">
-                <div class="alianza-card">
-                    <div class="alianza-icon">🤝</div>
+                <a href="https://www.compassioncolombia.org" target="_blank" class="alianza-card animate-on-scroll">
+                    <img src="images/compassion-logo.png" alt="Compassion International" class="alianza-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="alianza-placeholder" style="display:none;">
+                        <i class="fas fa-handshake"></i>
+                    </div>
                     <h3>Compassion International</h3>
-                    <p>Alianza global para el desarrollo integral de niños</p>
-                </div>
-                <div class="alianza-card">
-                    <div class="alianza-icon">🌱</div>
+                    <p>Liberando a los niños de la pobreza en el nombre de Jesús</p>
+                </a>
+                
+                <a href="https://www.semillasdevidatierrafertil.org" target="_blank" class="alianza-card animate-on-scroll">
+                    <img src="images/tierra-fertil-logo.png" alt="Semillas de vida Tierra Fértil" class="alianza-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="alianza-placeholder" style="display:none;">
+                        <i class="fas fa-seedling"></i>
+                    </div>
                     <h3>Tierra Fértil</h3>
-                    <p>Desarrollo comunitario sostenible</p>
-                </div>
+                    <p>Semillas de vida Tierra Fértil</p>
+                </a>
             </div>
-        </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="section section-light section-cta">
-        <div class="container text-center">
-            <h2>Queremos Conocerte</h2>
-            <p>Si deseas conocer más sobre nuestro trabajo o tienes preguntas, no dudes en contactarnos.</p>
-            <a href="contacto.html" class="btn-primary">Contacta con Nosotros</a>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 Fundación Red de Vida. Todos los derechos reservados.</p>
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/logo.jpg" alt="Fundación Red de Vida">
+                </div>
+                
+                <div class="footer-info">
+                    <div class="footer-contact">
+                        <div class="footer-item">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:freddevida2@gmail.com">freddevida2@gmail.com</a>
+                        </div>
+                        <div class="footer-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Bogotá - Colombia</span>
+                        </div>
+                        <div class="footer-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+57 6017913472</span>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/fundacionreddevida_/" target="_blank" title="Instagram" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.facebook.com/funreddevida/" target="_blank" title="Facebook" class="social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.youtube.com/channel/UCu2BhJERmo24n57K730B6gQ" target="_blank" title="YouTube" class="social-link">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 por Fundación Red de Vida. Todos los derechos reservados.</p>
+            </div>
         </div>
     </footer>
+
+    <!-- Modal para imagen -->
+    <div id="imageModal" class="image-modal" onclick="closeImageModal()">
+        <span class="modal-close-btn">&times;</span>
+        <img id="modalImage" class="modal-image-content" src="" alt="">
+    </div>
 
     <script src="js/script.js"></script>
     <script src="js/navbar-loader.js"></script>

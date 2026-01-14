@@ -88,9 +88,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // Carrusel Home
 const niñosData = [
-    { id: 1, nombre: 'Juan', edad: 8, imagen: 'images/juan.jpg', descripcion: 'Juan necesita educación y apoyo emocional para cumplir sus sueños de ser ingeniero.' },
-    { id: 2, nombre: 'María', edad: 6, imagen: 'images/maria.jpg', descripcion: 'María sueña con ser doctora y necesita oportunidades para desarrollar su potencial.' },
-    { id: 3, nombre: 'Carlos', edad: 10, imagen: 'images/carlos.jpg', descripcion: 'Carlos es un líder natural de su comunidad que necesita educación integral.' }
+    { id: 1, nombre: 'Brian', edad: 5, imagen: 'images/brian.jpg', descripcion: 'Brian es un niño alegre y curioso que sueña con aprender, crecer y necesita educación y apoyo emocional.' },
+    { id: 2, nombre: 'Juliana', edad: 5, imagen: 'images/juliana.jpg', descripcion: 'Juliana, con su risa contagiosa y su imaginación sin límites, es una niña de 5 años con un corazón lleno de sueños que necesita educación y desarrollo integral.' },
+    { id: 3, nombre: 'Ángel Valeriano', edad: 7, imagen: 'images/angel.jpg', descripcion: 'Ángel, a sus 7 años, vive en una comunidad donde la pobreza es una realidad cotidiana y necesita educación integral y apoyo emocional.' }
 ];
 
 let currentSlide = 0;
@@ -121,3 +121,55 @@ function updateCarousel() {
 if (document.getElementById('carouselImage')) {
     updateCarousel();
 }
+
+// Animaciones en scroll para nuevas secciones
+const animateObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, {
+    threshold: 0.15,
+    rootMargin: '0px 0px -50px 0px'
+});
+
+// Observar elementos con clase .animate-on-scroll
+document.querySelectorAll('.animate-on-scroll').forEach(element => {
+    animateObserver.observe(element);
+});
+
+// Observar tarjetas de alianzas
+document.querySelectorAll('.alianza-card').forEach((card, index) => {
+    card.style.animationDelay = `${index * 0.2}s`;
+    animateObserver.observe(card);
+});
+
+// Modal de imagen
+function openImageModal() {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    const carouselImg = document.getElementById('carouselImage');
+    
+    if (modal && modalImg && carouselImg) {
+        modalImg.src = carouselImg.src;
+        modalImg.alt = carouselImg.alt;
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden'; // Prevenir scroll
+    }
+}
+
+function closeImageModal() {
+    const modal = document.getElementById('imageModal');
+    if (modal) {
+        modal.classList.remove('show');
+        document.body.style.overflow = 'auto'; // Restaurar scroll
+    }
+}
+
+// Cerrar modal con tecla ESC
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeImageModal();
+    }
+});
