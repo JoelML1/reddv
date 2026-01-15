@@ -190,9 +190,207 @@
             color: white;
         }
         
+        /* Estilos para la sección del mapa */
+        .map-section {
+            padding: 80px 20px;
+            background: white;
+        }
+        
+        .map-section h2 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #1a1a1a;
+            margin: 0 0 50px 0;
+            font-weight: 700;
+        }
+        
+        .map-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+            position: relative;
+            height: 500px;
+        }
+        
+        .map-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #8B0000 100%);
+            z-index: 1;
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            filter: grayscale(0%);
+            transition: filter 0.3s ease;
+        }
+        
+        .map-container:hover iframe {
+            filter: grayscale(0%) brightness(1.05);
+        }
+        
+        /* Estilos para la sección de redes sociales */
+        .social-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+        
+        .social-section h2 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #1a1a1a;
+            margin: 0 0 20px 0;
+            font-weight: 700;
+        }
+        
+        .social-section p {
+            text-align: center;
+            font-size: 1.2em;
+            color: #555;
+            margin: 0 0 50px 0;
+        }
+        
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .social-card {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .social-card.facebook {
+            border-top: 5px solid #1877f2;
+        }
+        
+        .social-card.instagram {
+            border-top: 5px solid transparent;
+            background: white;
+            position: relative;
+        }
+        
+        .social-card.instagram::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        }
+        
+        .social-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        }
+        
+        .social-icon-large {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            font-size: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .social-card.facebook .social-icon-large {
+            background: linear-gradient(135deg, #1877f2, #0d5fce);
+        }
+        
+        .social-card.instagram .social-icon-large {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        }
+        
+        .social-card:hover .social-icon-large {
+            transform: scale(1.15) rotate(5deg);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .social-card h3 {
+            font-size: 2em;
+            margin: 0 0 15px 0;
+            font-weight: 700;
+        }
+        
+        .social-card.facebook h3 {
+            color: #1877f2;
+        }
+        
+        .social-card.instagram h3 {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .social-card p {
+            font-size: 1.1em;
+            color: #666;
+            margin: 0 0 20px 0;
+        }
+        
+        .social-username {
+            display: inline-block;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+        
+        .social-card.facebook .social-username {
+            background: rgba(24, 119, 242, 0.1);
+            color: #1877f2;
+        }
+        
+        .social-card.instagram .social-username {
+            background: rgba(225, 48, 108, 0.1);
+            color: #e1306c;
+        }
+        
         @media (max-width: 768px) {
             .contact-info-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .map-container {
+                height: 350px;
+            }
+            
+            .map-section h2 {
+                font-size: 2em;
+            }
+            
+            .social-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .social-section h2 {
+                font-size: 2em;
             }
         }
     </style>
@@ -223,7 +421,7 @@
             <div class="contact-card">
                 <div class="contact-icon">📞</div>
                 <h3>Teléfono</h3>
-                <p><a href="tel:+576017913472">+57 6017913472</a></p>
+                <p><a href="tel:+576017913472">+57 601 791 3472</a></p>
                 <p style="margin-top: 10px; font-size: 0.95em; color: #777;">Lunes a Viernes: 8:00 AM - 6:00 PM</p>
             </div>
             
@@ -240,8 +438,8 @@
                 <div class="contact-icon">📍</div>
                 <h3>Ubicación</h3>
                 <div class="contact-location">
-                    <p>Transversal 18h #78c-65<br>Bogotá, Colombia</p>
-                    <a href="https://maps.google.com/?q=Transversal+18h+78c-65+Bogota" target="_blank" class="location-link">
+                    <p>Tv. 18h #77a - 53<br>Cdad. Bolívar, Bogotá<br>Cundinamarca, Colombia</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Tv.+18h+%2377a+-+53+Cdad.+Bol%C3%ADvar+Bogot%C3%A1+Cundinamarca" target="_blank" class="location-link">
                         <span>🗺️</span>
                         <span>Ver en Google Maps</span>
                     </a>
@@ -251,38 +449,46 @@
     </section>
 
     <!-- Mapa -->
-    <section class="section section-light-bg">
-        <div class="container">
-            <h2 class="text-center">Ubicación en el Mapa</h2>
-            <div class="mapa-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1955.4386698145556!2d-74.20069!3d4.8231!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNMKwNDknMjQuMCJOIDc0wrAxMicyNi4yIlc!5e0!3m2!1ses!2sco!4v1234567890" width="100%" height="400" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
+    <section class="map-section">
+        <h2>Encuéntranos Aquí</h2>
+        <div class="map-container">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.459!2d-74.1025!3d4.6952!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9b123456789%3A0xabcdef1234567890!2sTv.%2018h%20%2377a%20-%2053%2C%20Cdad.%20Bol%C3%ADvar%2C%20Bogot%C3%A1!5e0!3m2!1ses!2sco!4v1234567890" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
         </div>
     </section>
 
-    <!-- Formulario de Contacto -->
-    <section class="section section-light">
-        <div class="container max-width-600">
-            <h2 class="text-center">Envíanos un Mensaje</h2>
-            <form class="contacto-form" onsubmit="handleSubmit(event)">
-                <div class="form-group">
-                    <label>Nombre</label>
-                    <input type="text" required>
+    <!-- Redes Sociales -->
+    <section class="social-section">
+        <h2>Contáctanos en Nuestras Redes Sociales</h2>
+        <p>Síguenos y mantente al día con nuestras actividades</p>
+        <div class="social-grid">
+            <!-- Facebook -->
+            <a href="https://www.facebook.com/funreddevida/" target="_blank" class="social-card facebook">
+                <div class="social-icon-large">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="white" viewBox="0 0 16 16">
+                        <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.049c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.049H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
+                    </svg>
                 </div>
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" required>
+                <h3>Facebook</h3>
+                <p>Únete a nuestra comunidad</p>
+                <span class="social-username">@funreddevida</span>
+            </a>
+            
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/fundacionreddevida_/" target="_blank" class="social-card instagram">
+                <div class="social-icon-large">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="white" viewBox="0 0 16 16">
+                        <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/>
+                    </svg>
                 </div>
-                <div class="form-group">
-                    <label>Asunto</label>
-                    <input type="text" required>
-                </div>
-                <div class="form-group">
-                    <label>Mensaje</label>
-                    <textarea rows="5" required></textarea>
-                </div>
-                <button type="submit" class="btn-primary btn-full">Enviar Mensaje</button>
-            </form>
+                <h3>Instagram</h3>
+                <p>Explora nuestras historias</p>
+                <span class="social-username">@fundacionreddevida_</span>
+            </a>
         </div>
     </section>
 
@@ -291,12 +497,5 @@
     <script src="js/script.js"></script>
     <script src="js/navbar-loader.js"></script>
     <script src="js/footer-loader.js"></script>
-    <script>
-        function handleSubmit(event) {
-            event.preventDefault();
-            alert('Mensaje enviado correctamente. Nos pondremos en contacto pronto.');
-            event.target.reset();
-        }
-    </script>
 </body>
 </html>
