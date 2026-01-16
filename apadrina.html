@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <title>Apadrina un Niño - Fundación Red de Vida</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .section-header.apadrina-header {
+            position: relative;
+            background-image: url('images/apadrinanino.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .section-header.apadrina-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+        
+        .section-header.apadrina-header .container {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+        
+        .section-header.apadrina-header h1 {
+            color: white;
+            font-size: 3.5em;
+            margin: 0 0 20px 0;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        
+        .section-header.apadrina-header p {
+            color: white;
+            font-size: 1.5em;
+            margin: 0;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+        }
+        
+        /* Grid de niños */
+        .children-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .child-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .child-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        }
+        
+        .child-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #8B0000 100%);
+        }
+        
+        .child-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            object-position: center top;
+            transition: transform 0.4s ease;
+        }
+        
+        .child-card:hover .child-image {
+            transform: scale(1.05);
+        }
+        
+        .child-info {
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .child-info h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.5em;
+            color: #1a1a1a;
+            font-weight: 700;
+        }
+        
+        .child-age {
+            color: #666;
+            font-size: 1.1em;
+            margin: 0 0 15px 0;
+        }
+        
+        .view-more-btn {
+            background: linear-gradient(135deg, #1a1a1a 0%, #8B0000 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
+        }
+        
+        .view-more-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 0, 0, 0.5);
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.3s ease;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #ff4444, #cc0000);
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 28px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+            box-shadow: 0 4px 15px rgba(204, 0, 0, 0.4);
+        }
+        
+        .modal-close:hover {
+            transform: scale(1.1) rotate(90deg);
+            box-shadow: 0 6px 20px rgba(204, 0, 0, 0.6);
+        }
+        
+        .modal-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+        
+        .modal-image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px 0 0 20px;
+        }
+        
+        .modal-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+        }
+        
+        .modal-info {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .modal-info h2 {
+            margin: 0 0 15px 0;
+            font-size: 2.2em;
+            color: #1a1a1a;
+            font-weight: 700;
+        }
+        
+        .modal-age {
+            font-size: 1.2em;
+            color: #666;
+            margin: 0 0 25px 0;
+        }
+        
+        .modal-description {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #555;
+            margin: 0 0 30px 0;
+            text-align: justify;
+        }
+        
+        .needs-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 0 0 30px 0;
+        }
+        
+        .need-tag {
+            background: rgba(139, 0, 0, 0.1);
+            color: #8B0000;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.95em;
+            font-weight: 600;
+        }
+        
+        .sponsor-btn {
+            background: linear-gradient(135deg, #1a1a1a 0%, #8B0000 100%);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 30px;
+            font-size: 1.2em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 25px rgba(139, 0, 0, 0.4);
+            text-align: center;
+        }
+        
+        .sponsor-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 35px rgba(139, 0, 0, 0.6);
+        }
+        
+        .paypal-note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-size: 0.95em;
+            color: #856404;
+            line-height: 1.6;
+        }
+        
+        .paypal-note strong {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 1.05em;
+        }
+        
+        .amount-highlight {
+            background: #28a745;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 700;
+        }
+        
+        /* Estilos compactos para beneficios */
+        .benefits-compact {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .benefit-compact {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .benefit-icon-compact {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #8B0000 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        
+        .benefit-compact h3 {
+            margin: 0;
+            font-size: 1em;
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .modal-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-image-container {
+                border-radius: 20px 20px 0 0;
+                height: 300px;
+            }
+            
+            .modal-info {
+                padding: 30px 20px;
+            }
+            
+            .children-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .benefits-compact {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- La navbar se cargará automáticamente aquí -->
+
+    <!-- Header -->
+    <section class="section-header apadrina-header">
+        <div class="container">
+            <h1>Apadrina un Niño</h1>
+            <p>Sé parte de la transformación de sus vidas</p>
+        </div>
+    </section>
+
+    <!-- ¿Qué significa apadrinar? (versión compacta) -->
+    <section class="section section-light" style="padding: 40px 20px;">
+        <div class="container">
+            <h2 class="text-center" style="margin-bottom: 30px; font-size: 2em;">¿Qué significa Apadrinar?</h2>
+            <div class="benefits-compact">
+                <div class="benefit-compact">
+                    <div class="benefit-icon-compact">✓</div>
+                    <h3>Apoyo Integral</h3>
+                </div>
+                <div class="benefit-compact">
+                    <div class="benefit-icon-compact">✓</div>
+                    <h3>Relación Personalizada</h3>
+                </div>
+                <div class="benefit-compact">
+                    <div class="benefit-icon-compact">✓</div>
+                    <h3>Impacto Mensurable</h3>
+                </div>
+                <div class="benefit-compact">
+                    <div class="benefit-icon-compact">✓</div>
+                    <h3>Cambio Real</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Grid de niños -->
+    <section class="section section-light-bg">
+        <div class="container">
+            <h2 class="text-center" style="margin-bottom: 40px;">Niños que Necesitan tu Apoyo</h2>
+            <div class="children-grid" id="children-grid"></div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal" id="child-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div class="modal-grid">
+                <div class="modal-image-container">
+                    <img id="modal-child-image" class="modal-image" src="" alt="">
+                </div>
+                <div class="modal-info">
+                    <h2 id="modal-child-name"></h2>
+                    <p class="modal-age" id="modal-child-age"></p>
+                    <p class="modal-description" id="modal-child-description"></p>
+                    <div class="needs-tags" id="modal-child-needs"></div>
+                    <div class="paypal-note">
+                        <strong>💳 Aceptamos donaciones por PayPal</strong>
+                        Apadrina desde <span class="amount-highlight">$80 USD</span> mensuales.<br>
+                        Por favor, comenta el nombre del niño que deseas apadrinar y el monto mensual.
+                    </div>
+                    <button class="sponsor-btn" id="sponsor-btn" onclick="sponsorChild()">
+                        Apadrínalo ❤️
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- El footer se carga automáticamente aquí -->
+
+    <script src="js/script.js"></script>
+    <script>
+        const children = [
+            {
+                id: 1,
+                nombre: 'Brian Morales',
+                edad: 5,
+                imagen: 'images/brian.jpg',
+                historia: 'Brian es un niño alegre y curioso que sueña con aprender y crecer. Vive en una comunidad desfavorecida donde las oportunidades son limitadas. Con tu apoyo, Brian podrá acceder a educación de calidad, alimentación nutritiva y el apoyo emocional que necesita para desarrollar todo su potencial.',
+                necesidades: ['Educación', 'Nutrición', 'Apoyo emocional'],
+                paypalLink: 'https://www.paypal.com/donate/?hosted_button_id=FL7VKY2UCMKSU'
+            },
+            {
+                id: 2,
+                nombre: 'Cristian David Arias',
+                edad: 8,
+                imagen: 'images/cristian.jpg',
+                historia: 'Cristian es un niño de 8 años que vive en una comunidad desfavorecida. Sus condiciones no lo definen; su espíritu y sus sueños sí. A pesar de las dificultades, Cristian mantiene viva la esperanza de un futuro mejor.',
+                necesidades: ['Educación', 'Salud', 'Desarrollo'],
+                paypalLink: 'https://www.paypal.com/donate/?hosted_button_id=FL7VKY2UCMKSU'
+            },
+            {
+                id: 3,
+                nombre: 'David Santiago Liévano',
+                edad: 7,
+                imagen: 'images/david.jpg',
+                historia: 'David es un niño de 7 años lleno de energía y creatividad. Le encanta jugar y aprender cosas nuevas. Con tu apoyo, David puede continuar su educación y tener acceso a las herramientas necesarias para construir un futuro prometedor.',
+                necesidades: ['Educación', 'Recreación', 'Apoyo emocional'],
+                paypalLink: 'https://www.paypal.com/donate/?hosted_button_id=FL7VKY2UCMKSU'
+            },
+            {
+                id: 4,
+                nombre: 'Elizabeth Alemán',
+                edad: 5,
+                imagen: 'images/elizabeth.jpg',
+                historia: 'Elizabeth es una niña dulce y cariñosa de 5 años. Le gusta dibujar y soñar con ser maestra algún día. Tu apoyo puede ayudarla a recibir la educación y el cuidado que merece para alcanzar sus sueños.',
+                necesidades: ['Educación', 'Nutrición', 'Salud'],
+                paypalLink: 'https://www.paypal.com/donate/?hosted_button_id=FL7VKY2UCMKSU'
+            },
+            {
+                id: 5,
+                nombre: 'Emily Daniela Chacón',
+                edad: 6,
+                imagen: 'images/emily.jpg',
+                historia: 'Emily es una niña alegre de 6 años con una gran sonrisa. Le encanta cantar y bailar. Con tu ayuda, Emily puede continuar desarrollando sus talentos y recibir el apoyo necesario para crecer sana y feliz.',
+                necesidades: ['Educación', 'Arte y cultura', 'Apoyo emocional'],
+                paypalLink: 'https://www.paypal.com/donate/?hosted_button_id=FL7VKY2UCMKSU'
+            },
+            {
+                id: 6,
+                nombre: 'Jeremy Gómez',
+                edad: 5,
+                imagen: 'images/jeremy.jpg',
+                historia: 'Jeremy es un niño curioso de 5 años que ama explorar y aprender. Su energía y entusiasmo son contagiosos. Tu apadrinamiento puede brindarle las oportunidades que necesita para desarrollar su máximo potencial.',
+                necesidades: ['Educación', 'Nutrición', 'Desarrollo'],
+                paypalLink: 'https://www.paypal.com/donate/?hosted_button_id=FL7VKY2UCMKSU'
+            },
+            {
+                id: 7,
+                nombre: 'Juliana Arias',
+                edad: 5,
+                imagen: 'images/juliana.jpg',
+                historia: 'Juliana, con su risa contagiosa y su imaginación sin límites, es una niña de 5 años con un corazón lleno de sueños. Le encanta escuchar cuentos y crear sus propias historias. Con tu apoyo, Juliana puede tener acceso a libros, educación y un futuro lleno de posibilidades.',
+                necesidades: ['Educación', 'Salud', 'Desarrollo'],
+                paypalLink: 'https://www.paypal.com/donate/?hosted_button_id=FL7VKY2UCMKSU'
+            },
+            {
+                id: 8,
+                nombre: 'Kevin Smith Hernández',
+                edad: 7,
+                imagen: 'images/kevin.jpg',
+                historia: 'Kevin es un niño inteligente de 7 años con gran potencial. Le gusta aprender cosas nuevas y tiene un espíritu inquieto por el conocimiento. Con tu apoyo, Kevin puede desarrollar sus habilidades y construir un futuro brillante.',
+                necesidades: ['Educación', 'Desarrollo', 'Apoyo emocional'],
+                paypalLink: 'https://www.paypal.com/donate/?hosted_button_id=FL7VKY2UCMKSU'
+            },
+            {
+                id: 9,
+                nombre: 'Moshelle Olaya',
+                edad: 7,
+                imagen: 'images/moshelle.jpg',
+                historia: 'Moshelle es una niña alegre de 7 años llena de energía y creatividad. Le encanta jugar con sus amigos y aprender cosas nuevas cada día. Tu apadrinamiento le dará la oportunidad de recibir educación de calidad y el apoyo que necesita.',
+                necesidades: ['Educación', 'Nutrición', 'Arte y cultura'],
+                paypalLink: 'https://www.paypal.com/donate/?hosted_button_id=FL7VKY2UCMKSU'
+            },
+            {
+                id: 10,
+                nombre: 'Ángel Valeriano',
+                edad: 7,
+                imagen: 'images/angel.jpg',
+                historia: 'Ángel, a sus 7 años, vive en una comunidad donde la pobreza es una realidad cotidiana. A pesar de las dificultades, Ángel mantiene su espíritu alegre y sus ganas de aprender. Con tu apoyo, puede tener acceso a educación y oportunidades para un mejor futuro.',
+                necesidades: ['Educación', 'Apoyo emocional', 'Nutrición'],
+                paypalLink: 'https://www.paypal.com/donate/?hosted_button_id=FL7VKY2UCMKSU'
+            }
+        ];
+
+        let selectedChild = null;
+
+        function renderChildren() {
+            const grid = document.getElementById('children-grid');
+            grid.innerHTML = children.map(child => `
+                <div class="child-card" onclick="openModal(${child.id})">
+                    <img src="${child.imagen}" alt="${child.nombre}" class="child-image">
+                    <div class="child-info">
+                        <h3>${child.nombre}</h3>
+                        <p class="child-age">📅 ${child.edad} años</p>
+                        <button class="view-more-btn">Ver más</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openModal(childId) {
+            selectedChild = children.find(c => c.id === childId);
+            if (!selectedChild) return;
+
+            document.getElementById('modal-child-image').src = selectedChild.imagen;
+            document.getElementById('modal-child-name').textContent = selectedChild.nombre;
+            document.getElementById('modal-child-age').textContent = `📅 ${selectedChild.edad} años`;
+            document.getElementById('modal-child-description').textContent = selectedChild.historia;
+            document.getElementById('modal-child-needs').innerHTML = selectedChild.necesidades
+                .map(need => `<span class="need-tag">${need}</span>`).join('');
+            
+            document.getElementById('child-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('child-modal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+            selectedChild = null;
+        }
+
+        function sponsorChild() {
+            if (!selectedChild) return;
+            window.open(selectedChild.paypalLink, '_blank');
+        }
+
+        // Cerrar modal con ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // Cerrar modal al hacer click fuera
+        document.getElementById('child-modal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) closeModal();
+        });
+
+        // Inicializar
+        renderChildren();
+    </script>
+    <script src="js/navbar-loader.js"></script>
+    <script src="js/footer-loader.js"></script>
+</body>
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <title>Red de Desarrollo Vecinal</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo" title="Ir al Inicio">
+                <img src="images/logo.jpg" alt="RDV Logo - Fundación Red de Vida">
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item"><a href="sobre-nosotros.html" class="nav-links">Sobre nosotros</a></li>
+                <li class="nav-item"><a href="devocional.html" class="nav-links">Devocional</a></li>
+                <li class="nav-item"><a href="galeria.html" class="nav-links">Galería</a></li>
+                 <!--<li class="nav-item"><a href="index.html" class="nav-links">Inicio</a></li>-->
+                <li class="nav-item"><a href="contacto.html" class="nav-links">Contacto</a></li>
+                <li class="nav-item"><a href="apadrina.html" class="nav-links">Apadrina</a></li>
+                <li class="nav-item nav-item-donar-mobile"><a href="donar.html" class="nav-links nav-links-donar">💝 Donar</a></li>
+            </ul>
+            <div class="navbar-right">
+                <a href="donar.html" class="nav-links nav-links-donar">💝 Donar</a>
+                <div class="navbar-social">
+                    <a href="https://www.instagram.com/fundacionreddevida_/" target="_blank" title="Instagram" class="social-instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/funreddevida/" target="_blank" title="Facebook" class="social-facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.youtube.com/channel/UCu2BhJERmo24n57K730B6gQ" target="_blank" title="YouTube" class="social-youtube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="menu-icon" id="menuIcon">☰</div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" style="background-image: url('images/grupo-fundacion.jpg')">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Fundación Red de Vida</h1>
+            <p>Transformando vidas a través de la educación, la fe y el amor</p>
+            <a href="sobre-nosotros.html" class="btn-primary">Conoce Más Sobre Nosotros</a>
+        </div>
+    </section>
+
+    <!-- Sobre Nosotros Preview -->
+    <section class="section section-light section-sobre-nosotros">
+        <div class="container">
+            <div class="section-header-content animate-on-scroll">
+                <h2>Sobre Nosotros</h2>
+                <div class="header-line"></div>
+            </div>
+            <div class="sobre-nosotros-content animate-on-scroll">
+                <div class="sobre-nosotros-icon">
+                    <img src="images/logo.jpg" alt="Fundación Red de Vida">
+                </div>
+                <p class="section-description">Fundación Red de Vida es una entidad sin ánimo de lucro comprometida desde hace más de <span class="highlight">16 años</span> con la transformación de vidas de niños en alto estado de vulnerabilidad, a través de <strong>educación integral, apoyo emocional y valores cristianos.</strong></p>
+                <a href="sobre-nosotros.html" class="btn-primary btn-outline">Conoce Más Sobre Nosotros</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formas en que Ayudamos -->
+    <section class="section section-dark section-ayudamos">
+        <div class="container">
+            <div class="section-header-content">
+                <h2>Formas en que Ayudamos</h2>
+                <div class="header-line header-line-light"></div>
+            </div>
+            <div class="cards-grid">
+                <div class="card card-dark card-hover animate-on-scroll">
+                    <div class="card-icon-wrapper">
+                        <div class="card-icon">✨</div>
+                    </div>
+                    <h3>Apoyo Espiritual</h3>
+                    <p>Ofrecemos valores bíblicos, oración y conexión con Dios desde perspectivas integrales y psicológicas.</p>
+                </div>
+                <div class="card card-dark card-hover animate-on-scroll">
+                    <div class="card-icon-wrapper">
+                        <div class="card-icon">💪</div>
+                    </div>
+                    <h3>Salud Física</h3>
+                    <p>Alimentación nutritiva, valoración médica, educación sexual y cuidado integral de la salud.</p>
+                </div>
+                <div class="card card-dark card-hover animate-on-scroll">
+                    <div class="card-icon-wrapper">
+                        <div class="card-icon">❤️</div>
+                    </div>
+                    <h3>Desarrollo Socio-Emocional</h3>
+                    <p>Expresión de sentimientos, interacción recíproca con otros y toma de decisiones responsables.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Carrusel de Niños -->
+    <section class="section section-light section-apadrina-home">
+        <div class="container">
+            <div class="section-header-content">
+                <h2>Apadrina un Niño</h2>
+                <div class="header-line"></div>
+            </div>
+            <p class="section-description">Cada niño merece oportunidades para alcanzar su máximo potencial. Conoce las historias de nuestros beneficiarios.</p>
+            
+            <div class="carousel">
+                <div class="carousel-container">
+                    <div class="carousel-image" onclick="openImageModal()" style="cursor: pointer;">
+                        <img id="carouselImage" src="images/juan.jpg" alt="Niño">
+                    </div>
+                    <div class="carousel-info">
+                        <h3 id="carouselName">Juan</h3>
+                        <p class="age" id="carouselAge">📅 8 años</p>
+                        <p class="description" id="carouselDesc">Juan necesita educación y apoyo emocional para cumplir sus sueños de ser ingeniero.</p>
+                        <a href="apadrina.html" class="btn-primary btn-secondary" id="carousel-btn">Apadrina a <span id="carouselNameBtn">Juan</span></a>
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <button onclick="prevSlide()" class="carousel-btn">❮</button>
+                    <span class="carousel-counter"><span id="carouselCurrent">1</span> de <span id="carouselTotal">3</span></span>
+                    <button onclick="nextSlide()" class="carousel-btn">❯</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Alianzas -->
+    <section class="section section-dark section-alianzas">
+        <div class="container">
+            <div class="section-header-content">
+                <h2>Alianzas</h2>
+                <div class="header-line header-line-light"></div>
+            </div>
+            <p class="section-description section-description-light">Aquí encontrarás las páginas web de las fundaciones con las que tenemos contacto constante para lograr alianzas positivas que ayuden a nuestros participantes</p>
+            
+            <div class="alianzas-grid">
+                <a href="https://www.compassioncolombia.org" target="_blank" class="alianza-card animate-on-scroll">
+                    <img src="images/compassion-logo.png" alt="Compassion International" class="alianza-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="alianza-placeholder" style="display:none;">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Compassion International</h3>
+                    <p>Liberando a los niños de la pobreza en el nombre de Jesús</p>
+                </a>
+                
+                <a href="https://www.semillasdevidatierrafertil.org" target="_blank" class="alianza-card animate-on-scroll">
+                    <img src="images/tierra-fertil-logo.png" alt="Semillas de vida Tierra Fértil" class="alianza-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="alianza-placeholder" style="display:none;">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3>Tierra Fértil</h3>
+                    <p>Semillas de vida Tierra Fértil</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/logo.jpg" alt="Fundación Red de Vida">
+                </div>
+                
+                <div class="footer-info">
+                    <div class="footer-contact">
+                        <div class="footer-item">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:freddevida2@gmail.com">freddevida2@gmail.com</a>
+                        </div>
+                        <div class="footer-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Bogotá - Colombia</span>
+                        </div>
+                        <div class="footer-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+57 6017913472</span>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/fundacionreddevida_/" target="_blank" title="Instagram" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.facebook.com/funreddevida/" target="_blank" title="Facebook" class="social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.youtube.com/channel/UCu2BhJERmo24n57K730B6gQ" target="_blank" title="YouTube" class="social-link">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 por Fundación Red de Vida. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal para imagen -->
+    <div id="imageModal" class="image-modal" onclick="closeImageModal()">
+        <span class="modal-close-btn">&times;</span>
+        <img id="modalImage" class="modal-image-content" src="" alt="">
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        const niños = [
+            { 
+                id: 1, 
+                nombre: 'Brian', 
+                edad: 5, 
+                imagen: 'images/brian.jpg', 
+                descripcion: 'Brian es un niño alegre y curioso que sueña con aprender, crecer y necesita educación y apoyo emocional.' 
+            },
+            { 
+                id: 2, 
+                nombre: 'Juliana', 
+                edad: 5, 
+                imagen: 'images/juliana.jpg', 
+                descripcion: 'Juliana, con su risa contagiosa y su imaginación sin límites, es una niña de 5 años con un corazón lleno de sueños.' 
+            },
+            { 
+                id: 3, 
+                nombre: 'Ángel', 
+                edad: 7, 
+                imagen: 'images/angel.jpg', 
+                descripcion: 'Ángel, a sus 7 años, vive en una comunidad donde la pobreza es una realidad cotidiana.' 
+            }
+        ];
+
+        let currentIndex = 0;
+
+        function updateCarousel() {
+            const niño = niños[currentIndex];
+            document.getElementById('carouselImage').src = niño.imagen;
+            document.getElementById('carouselName').textContent = niño.nombre;
+            document.getElementById('carouselAge').textContent = `📅 ${niño.edad} años`;
+            document.getElementById('carouselDesc').textContent = niño.descripcion;
+            document.getElementById('carouselNameBtn').textContent = niño.nombre.toUpperCase();
+            document.getElementById('carouselCurrent').textContent = `${currentIndex + 1}`;
+            document.getElementById('carouselTotal').textContent = `${niños.length}`;
+            
+            // Actualizar el enlace del botón
+            document.getElementById('carousel-btn').href = 'apadrina.html';
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % niños.length;
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + niños.length) % niños.length;
+            updateCarousel();
+        }
+
+        updateCarousel();
+    </script>
+    <script src="js/navbar-loader.js"></script>
+    <script src="js/footer-loader.js"></script>
+</body>
+</html>

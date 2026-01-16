@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <title>Galería - Fundación Red de Vida</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .section-header {
+            position: relative;
+            background-image: url('images/galeriafondo.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .section-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+        
+        .section-header .container {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+        
+        .section-header h1 {
+            color: white;
+            font-size: 3.5em;
+            margin: 0 0 20px 0;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .section-header p {
+            color: white;
+            font-size: 1.3em;
+            margin: 0;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Filtro de búsqueda */
+        .filter-section {
+            padding: 40px 20px;
+            background: #f8f9fa;
+        }
+
+        .search-bar {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            border: 2px solid #ddd;
+            border-radius: 50px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .search-bar input:focus {
+            outline: none;
+            border-color: #8B0000;
+            box-shadow: 0 0 15px rgba(139, 0, 0, 0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+        }
+
+        /* Grid de categorías */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            height: 350px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+            padding: 30px 20px 20px;
+            color: white;
+        }
+
+        .gallery-item h3 {
+            margin: 0;
+            font-size: 1.5em;
+            font-weight: 700;
+        }
+
+        .photo-count {
+            font-size: 0.9em;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        /* Modal Carrusel */
+        .carousel-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-modal.active {
+            display: flex;
+        }
+
+        .carousel-container {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-image {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 10px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .carousel-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #ff4444, #cc0000);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(204, 0, 0, 0.4);
+            z-index: 2001;
+        }
+
+        .carousel-close:hover {
+            transform: scale(1.1) rotate(90deg);
+            box-shadow: 0 6px 20px rgba(204, 0, 0, 0.6);
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .carousel-nav:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-prev {
+            left: 20px;
+        }
+
+        .carousel-next {
+            right: 20px;
+        }
+
+        .carousel-info {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .carousel-counter {
+            text-align: center;
+            font-size: 1.1em;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+            font-size: 1.2em;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .carousel-nav {
+                width: 45px;
+                height: 45px;
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- La navbar se cargará automáticamente aquí -->
+
+    <!-- Header con imagen de fondo -->
+    <section class="section-header">
+        <div class="container">
+            <h1>Galería</h1>
+            <p>Momentos especiales de nuestro trabajo</p>
+        </div>
+    </section>
+
+    <!-- Filtro de búsqueda -->
+    <section class="filter-section">
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Buscar categoría..." onkeyup="filterGallery()">
+            <span class="search-icon">🔍</span>
+        </div>
+    </section>
+
+    <!-- Grid de galería -->
+    <section class="gallery-section">
+        <div class="gallery-grid" id="gallery-grid">
+            <!-- Las categorías se generarán aquí -->
+        </div>
+        <div class="no-results" id="no-results" style="display: none;">
+            No se encontraron resultados para tu búsqueda.
+        </div>
+    </section>
+
+    <!-- Modal Carrusel -->
+    <div class="carousel-modal" id="carousel-modal">
+        <button class="carousel-close" onclick="closeCarousel()">×</button>
+        <div class="carousel-container">
+            <button class="carousel-nav carousel-prev" onclick="prevImage()">‹</button>
+            <img id="carousel-image" class="carousel-image" src="" alt="">
+            <button class="carousel-nav carousel-next" onclick="nextImage()">›</button>
+        </div>
+        <div class="carousel-info">
+            <div class="carousel-counter">
+                <span id="current-index">1</span> / <span id="total-images">1</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Datos de las categorías con sus fotos
+        const categories = [
+            {
+                name: 'Milla Extra',
+                cover: 'images/milla1.png',
+                photos: [
+                    'images/milla1.png',
+                    'images/milla2.png',
+                    'images/milla3.png',
+                    'images/milla4.png',
+                    'images/milla5.png',
+                    'images/milla6.png',
+                    'images/milla7.png',
+                    'images/milla8.png',
+                    'images/milla9.png'
+                ]
+            },
+            {
+                name: 'Grados',
+                cover: 'images/grados1.png',
+                photos: [
+                    'images/grados1.png',
+                    'images/grados2.png',
+                    'images/grados3.png',
+                    'images/grados4.png',
+                    'images/grados5.png',
+                    'images/grados6.png',
+                    'images/grados7.png',
+                    'images/grados8.png',
+                    'images/grados9.png',
+                    'images/grados10.png',
+                    'images/grados11.png',
+                    'images/grados12.png',
+                    'images/grados13.png',
+                    'images/grados14.png',
+                    'images/grados15.png',
+                    'images/grados16.png',
+                    'images/grados17.png',
+                    'images/grados18.png',
+                    'images/grados19.png',
+                    'images/grados20.png',
+                    'images/grados21.png',
+                    'images/grados22.png',
+                    'images/grados23.png',
+                    'images/grados24.png',
+                    'images/grados25.png',
+                    'images/grados26.png'
+                ]
+            },
+            {
+                name: 'Día del Amigo',
+                cover: 'images/amigo1.png',
+                photos: [
+                    'images/amigo1.png',
+                    'images/amigo2.png',
+                    'images/amigo3.png',
+                    'images/amigo4.png',
+                    'images/amigo5.png',
+                    'images/amigo6.png',
+                    'images/amigo7.png',
+                    'images/amigo8.png',
+                    'images/amigo9.png',
+                    'images/amigo10.png',
+                    'images/amigo11.png',
+                    'images/amigo12.png',
+                    'images/amigo13.png',
+                    'images/amigo14.png',
+                    'images/amigo15.png',
+                    'images/amigo16.png',
+                    'images/amigo17.png',
+                    'images/amigo18.png',
+                    'images/amigo19.png',
+                    'images/amigo20.png',
+                    'images/amigo21.png',
+                    'images/amigo22.png',
+                    'images/amigo23.png',
+                    'images/amigo24.png',
+                    'images/amigo25.png',
+                    'images/amigo26.png',
+                    'images/amigo27.png'
+                ]
+            },
+            {
+                name: 'Propósito de Vida',
+                cover: 'images/proposito1.png',
+                photos: [
+                    'images/proposito1.png',
+                    'images/proposito2.png',
+                    'images/proposito3.png',
+                    'images/proposito4.png',
+                    'images/proposito5.png',
+                    'images/proposito6.png',
+                    'images/proposito7.png',
+                    'images/proposito8.png',
+                    'images/proposito9.png',
+                    'images/proposito10.png',
+                    'images/proposito11.png',
+                    'images/proposito12.png',
+                    'images/proposito13.png',
+                    'images/proposito14.png',
+                    'images/proposito15.png',
+                    'images/proposito16.png',
+                    'images/proposito17.png',
+                    'images/proposito18.png',
+                    'images/proposito19.png',
+                    'images/proposito20.png'
+                ]
+            },
+            {
+                name: 'Parte de Nuestro Recorrido',
+                cover: 'images/recorrido1.png',
+                photos: [
+                    'images/recorrido1.png',
+                    'images/recorrido2.png',
+                    'images/recorrido3.png',
+                    'images/recorrido4.png',
+                    'images/recorrido5.png',
+                    'images/recorrido6.png',
+                    'images/recorrido7.png',
+                    'images/recorrido8.png',
+                    'images/recorrido9.png',
+                    'images/recorrido10.png',
+                    'images/recorrido11.png',
+                    'images/recorrido12.png',
+                    'images/recorrido13.png',
+                    'images/recorrido14.png',
+                    'images/recorrido15.png',
+                    'images/recorrido16.png',
+                    'images/recorrido17.png',
+                    'images/recorrido18.png',
+                    'images/recorrido19.png',
+                    'images/recorrido20.png',
+                    'images/recorrido21.png',
+                    'images/recorrido22.png',
+                    'images/recorrido23.png',
+                    'images/recorrido24.png',
+                    'images/recorrido25.png',
+                    'images/recorrido26.png',
+                    'images/recorrido27.png',
+                    'images/recorrido28.png',
+                    'images/recorrido29.png',
+                    'images/recorrido30.png',
+                    'images/recorrido31.png',
+                    'images/recorrido32.png',
+                    'images/recorrido33.png',
+                    'images/recorrido34.png',
+                    'images/recorrido35.png',
+                    'images/recorrido36.png',
+                    'images/recorrido37.png',
+                    'images/recorrido38.png',
+                    'images/recorrido39.png',
+                    'images/recorrido40.png',
+                    'images/recorrido41.png',
+                    'images/recorrido42.png',
+                    'images/recorrido43.png',
+                    'images/recorrido44.png',
+                    'images/recorrido45.png',
+                    'images/recorrido46.png',
+                    'images/recorrido47.png',
+                    'images/recorrido48.png',
+                    'images/recorrido49.png',
+                    'images/recorrido50.png'
+                ]
+            }
+        ];
+
+        let currentCategory = null;
+        let currentImageIndex = 0;
+
+        // Renderizar galería
+        function renderGallery(filteredCategories = categories) {
+            const grid = document.getElementById('gallery-grid');
+            const noResults = document.getElementById('no-results');
+
+            if (filteredCategories.length === 0) {
+                grid.innerHTML = '';
+                noResults.style.display = 'block';
+                return;
+            }
+
+            noResults.style.display = 'none';
+            grid.innerHTML = filteredCategories.map((cat, index) => `
+                <div class="gallery-item" onclick="openCarousel(${index})">
+                    <img src="${cat.cover}" alt="${cat.name}">
+                    <div class="gallery-overlay">
+                        <h3>${cat.name}</h3>
+                        <p class="photo-count">${cat.photos.length} fotos</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Filtrar galería
+        function filterGallery() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            const filtered = categories.filter(cat => 
+                cat.name.toLowerCase().includes(searchTerm)
+            );
+            renderGallery(filtered);
+        }
+
+        // Abrir carrusel
+        function openCarousel(categoryIndex) {
+            currentCategory = categories[categoryIndex];
+            currentImageIndex = 0;
+            showImage();
+            document.getElementById('carousel-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Cerrar carrusel
+        function closeCarousel() {
+            document.getElementById('carousel-modal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Mostrar imagen actual
+        function showImage() {
+            if (!currentCategory) return;
+            const img = document.getElementById('carousel-image');
+            img.src = currentCategory.photos[currentImageIndex];
+            document.getElementById('current-index').textContent = currentImageIndex + 1;
+            document.getElementById('total-images').textContent = currentCategory.photos.length;
+        }
+
+        // Imagen anterior
+        function prevImage() {
+            if (!currentCategory) return;
+            currentImageIndex = (currentImageIndex - 1 + currentCategory.photos.length) % currentCategory.photos.length;
+            showImage();
+        }
+
+        // Imagen siguiente
+        function nextImage() {
+            if (!currentCategory) return;
+            currentImageIndex = (currentImageIndex + 1) % currentCategory.photos.length;
+            showImage();
+        }
+
+        // Navegación con teclado
+        document.addEventListener('keydown', (e) => {
+            if (document.getElementById('carousel-modal').classList.contains('active')) {
+                if (e.key === 'ArrowLeft') prevImage();
+                if (e.key === 'ArrowRight') nextImage();
+                if (e.key === 'Escape') closeCarousel();
+            }
+        });
+
+        // Cerrar al hacer click fuera de la imagen
+        document.getElementById('carousel-modal').addEventListener('click', (e) => {
+            if (e.target.id === 'carousel-modal') closeCarousel();
+        });
+
+        // Inicializar galería
+        renderGallery();
+    </script>
+    <script src="js/navbar-loader.js"></script>
+    <script src="js/footer-loader.js"></script>
+</body>
+</html>

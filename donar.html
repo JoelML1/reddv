@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <title>Donar - Fundación Red de Vida</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .section-header.donar-header {
+            position: relative;
+            background-image: url('images/fondodedonar.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .section-header.donar-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+        
+        .section-header.donar-header .container {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+        
+        .section-header.donar-header h1 {
+            color: white;
+            font-size: 3.5em;
+            margin: 0 0 20px 0;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        
+        .section-header.donar-header p {
+            color: white;
+            font-size: 1.5em;
+            margin: 0;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+        }
+        
+        /* Sección Por qué Donar - Compacta y moderna */
+        .why-donate-section {
+            padding: 50px 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+        
+        .why-donate-section h2 {
+            text-align: center;
+            font-size: 2.2em;
+            color: #1a1a1a;
+            margin: 0 0 40px 0;
+            font-weight: 700;
+        }
+        
+        .reasons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .reason-card {
+            background: white;
+            padding: 30px 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .reason-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #8B0000 100%);
+        }
+        
+        .reason-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .reason-icon {
+            font-size: 3em;
+            margin: 0 0 15px 0;
+            display: block;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+        }
+        
+        .reason-card h3 {
+            font-size: 1.3em;
+            color: #1a1a1a;
+            margin: 0 0 12px 0;
+            font-weight: 700;
+        }
+        
+        .reason-card p {
+            font-size: 0.95em;
+            color: #666;
+            margin: 0;
+            line-height: 1.5;
+        }
+        
+        /* Sección de métodos de pago alternativos */
+        .alternative-payment {
+            padding: 60px 20px;
+            background: white;
+        }
+        
+        .alternative-payment h2 {
+            text-align: center;
+            font-size: 2em;
+            color: #1a1a1a;
+            margin: 0 0 50px 0;
+            font-weight: 700;
+        }
+        
+        .payment-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .qr-section {
+            text-align: center;
+        }
+        
+        .qr-code {
+            max-width: 300px;
+            width: 100%;
+            height: auto;
+            border: 3px solid #e9ecef;
+            border-radius: 15px;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin: 0 auto 30px;
+        }
+        
+        .ayudanos-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #8B0000 100%);
+            color: white;
+            border: 2px solid #1a1a1a;
+            padding: 15px 35px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1.2em;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .ayudanos-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .bank-info {
+            background: #f8f9fa;
+            padding: 35px;
+            border-radius: 15px;
+            border-left: 5px solid #8B0000;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .bank-info p {
+            margin: 0 0 15px 0;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+        
+        .bank-info strong {
+            color: #1a1a1a;
+            font-weight: 700;
+        }
+        
+        .bank-logo {
+            width: 40px;
+            height: 40px;
+            vertical-align: middle;
+            margin-left: 10px;
+        }
+        
+        .account-number {
+            background: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #8B0000;
+            display: inline-block;
+            margin: 10px 0;
+            border: 2px dashed #8B0000;
+        }
+        
+        .note-section {
+            background: #fff3cd;
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 40px;
+            text-align: center;
+            border-left: 5px solid #ffc107;
+        }
+        
+        .note-section p {
+            margin: 0;
+            font-size: 1.05em;
+            color: #856404;
+            line-height: 1.7;
+        }
+        
+        @media (max-width: 768px) {
+            .why-donate-section h2 {
+                font-size: 1.8em;
+            }
+            
+            .reasons-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .payment-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .qr-code {
+                max-width: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- La navbar se cargará automáticamente aquí -->
+
+    <!-- Header -->
+    <section class="section-header donar-header">
+        <div class="container">
+            <h1>Haz una Donación</h1>
+            <p>Tu ayuda transforma vidas</p>
+        </div>
+    </section>
+
+    <!-- ¿Por qué Donar? - Versión compacta y moderna -->
+    <section class="why-donate-section">
+        <h2>¿Por qué Donar?</h2>
+        <div class="reasons-grid">
+            <div class="reason-card">
+                <span class="reason-icon">💝</span>
+                <h3>Cambias Vidas</h3>
+                <p>Tu donación impacta directamente en el futuro de niños en vulnerabilidad.</p>
+            </div>
+            <div class="reason-card">
+                <span class="reason-icon">🔓</span>
+                <h3>Transparencia Total</h3>
+                <p>100% de tus donaciones se destinan al bienestar de nuestros beneficiarios.</p>
+            </div>
+            <div class="reason-card">
+                <span class="reason-icon">🤝</span>
+                <h3>Eres Parte</h3>
+                <p>Te conviertes en parte de una comunidad comprometida con el cambio.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Botón de Donación con PayPal -->
+    <section class="section section-light text-center">
+        <div class="container">
+            <h2>Haz tu Donación Ahora</h2>
+            <p style="margin-bottom: 30px;">Cada aporte cuenta. Tu generosidad marca la diferencia.</p>
+            <a href="https://www.paypal.com/donate/?hosted_button_id=FL7VKY2UCMKSU" target="_blank" class="btn-primary btn-large">
+                Donar con PayPal 💙
+            </a>
+        </div>
+    </section>
+
+    <!-- Métodos de pago alternativos -->
+    <section class="alternative-payment">
+        <h2>Otras Formas de Ayudar</h2>
+        <div class="payment-content">
+            <!-- Sección QR -->
+            <div class="qr-section">
+                <img src="images/qr-donacion.png" alt="Código QR para donaciones" class="qr-code">
+                <a href="https://www.paypal.com/donate/?hosted_button_id=FL7VKY2UCMKSU" target="_blank" class="ayudanos-btn">
+                    <span>AYÚDANOS</span>
+                    <span style="font-size: 1.5em;">💵</span>
+                </a>
+            </div>
+            
+            <!-- Información bancaria -->
+            <div class="bank-info">
+                <p style="font-size: 1.15em; margin-bottom: 25px;">
+                    Si no puedes a través de Paypal lo puedes hacer a la cuenta bancaria
+                </p>
+                <p>
+                    <strong>Cuenta de ahorros</strong> 
+                    <strong style="color: #1a1a1a;">Bancolombia</strong>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="bank-logo" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="45" fill="#FDDA24"/>
+                        <path d="M30 50h40M50 30v40" stroke="#000" stroke-width="8" stroke-linecap="round"/>
+                    </svg>
+                </p>
+                <div class="account-number">#669 770 855 95</div>
+                <p style="margin-top: 15px;">
+                    <strong>NIT:</strong> 900 157 971-6
+                </p>
+            </div>
+        </div>
+        
+        <!-- Nota final -->
+        <div class="note-section">
+            <p>
+                <strong>💛 ¡Gracias por tu generosidad!</strong><br>
+                Cada donación, sin importar el monto, nos ayuda a cambiar vidas y construir un futuro mejor para nuestros niños. Tu apoyo significa esperanza, educación y oportunidades. ¡Que Dios te bendiga! ❤️🙏
+            </p>
+        </div>
+    </section>
+
+    <!-- El footer se carga automáticamente aquí -->
+
+    <script src="js/navbar-loader.js"></script>
+    <script src="js/footer-loader.js"></script>
+</body>
+</html>
